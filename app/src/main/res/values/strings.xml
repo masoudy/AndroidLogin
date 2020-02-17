@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="warning_mobile_should_not_be_empty">لطفا شماره موبایل را وارد کنید!</string>
+</resources>
