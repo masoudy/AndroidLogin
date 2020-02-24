@@ -9,6 +9,7 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import ir.avarche.android.app.di.DaggerRepos
 import ir.avarche.android.app.di.ViewModelFactory
@@ -46,6 +47,14 @@ class LoginVerificationPage : Fragment() {
         }
 
 
+        viewModel.isLoggedIn.observe(viewLifecycleOwner, Observer{
+            if(it)
+                alert(
+                    context!!,
+                    "",
+                    getString(R.string.congratulation_your_inside)
+                )
+        })
 
         confirmVerificationButton.setOnClickListener {
             viewModel.verifyCode()

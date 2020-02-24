@@ -9,6 +9,7 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import ir.avarche.android.app.util.alert
@@ -46,6 +47,7 @@ class LoginMobilePage : Fragment() {
                 )
 
         }
+
 
         viewModel.verificationCodeSent.handleIfHasNotBeenHandled(viewLifecycleOwner) {
 

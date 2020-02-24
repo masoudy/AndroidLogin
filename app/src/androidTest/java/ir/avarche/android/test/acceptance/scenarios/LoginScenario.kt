@@ -65,6 +65,10 @@ object LoginScenario {
         ensureThatViewWithTextIsOnScreenNow(getString(R.string.warning_verification_code_should_be_correct))
     }
 
+    fun userIsPromptedWithCongratulationDialog() {
+        ensureThatViewWithTextIsOnScreenNow(getString(R.string.congratulation_your_inside))
+    }
+
     fun supposeVerificationCodeIs(code: String) {
         ServerGateway.addInterceptor(object : ServerInterceptor {
             override fun intercept(request: Request) {

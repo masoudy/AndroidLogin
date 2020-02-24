@@ -48,4 +48,19 @@ class UserSendsMobileSuccessfullyAndProceedsToVerificationCodePage {
         LoginScenario.userIsPromptedWithInvalidCode()
     }
 
+
+    @Test
+    fun userEntersValidMobileAndVerifiesTheCorrectCodeScenario()
+    {
+        LoginScenario.supposeUserWithMobileExists("09120000000")
+        LoginScenario.supposeVerificationCodeIs("code")
+
+        LoginScenario.userEntersMobileAndClicksLogin("09120000000")
+
+        LoginScenario.userWillBeProceededToCodeVerificationPage()
+
+        LoginScenario.userEntersVerificationCodeAndAsksToConfirmIt("code")
+
+        LoginScenario.userIsPromptedWithCongratulationDialog()
+    }
 }
