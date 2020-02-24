@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
+    app:startDestination="@id/loginMobilePage2">
+    <fragment
+        android:id="@+id/loginMobilePage2"
+        android:name="ir.avarche.android.app.loginPage.LoginMobilePage"
+        android:label="LoginMobilePage" >
+        <action
+            android:id="@+id/action_loginMobilePage2_to_loginVerificationPage"
+            app:destination="@id/loginVerificationPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginVerificationPage"
+        android:name="ir.avarche.android.app.loginPage.LoginVerificationPage"
+        android:label="LoginVerificationPage" />
+</navigation>

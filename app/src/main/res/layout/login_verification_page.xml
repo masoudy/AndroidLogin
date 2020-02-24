@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <EditText
-        android:id="@+id/mobileField"
+        android:id="@+id/verificationField"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_margin="10dp"
@@ -13,9 +13,9 @@
 
 
     <Button
-        android:id="@+id/askForVerificationCodeButton"
+        android:id="@+id/confirmVerificationCodeButton"
         android:layout_width="match_parent"
-        app:layout_constraintTop_toBottomOf="@id/mobileField"
+        app:layout_constraintTop_toBottomOf="@id/verificationField"
         android:layout_height="100dp"
         android:text="send"
 

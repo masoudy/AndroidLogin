@@ -2,7 +2,8 @@ package ir.avarche.android.test.acceptance
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import ir.avarche.android.test.*
+import ir.avarche.android.app.MainActivity
+import ir.avarche.android.test.acceptance.scenarios.LoginScenario
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -15,20 +16,36 @@ class UserSendsMobileSuccessfullyAndProceedsToVerificationCodePage {
 
 
     @Test
-    fun userIsAskedToEnterLoginMobile()
+    fun invalidNumberScenario()
     {
-        ensureThatViewIsOnScreenNow(R.id.mobileField)
+        LoginScenario.userEntersMobileAndClicksLogin("")
+
+        LoginScenario.userIsPromptedWithInvalidNumberWarning()
     }
 
     @Test
-    fun userEntersNothingAndClicksLoginAndIsPromptedWithWarningThatMobileIsEmpty()
+    fun uponEnteringValidMobileUserWillProceedToVerificationPageScenario()
     {
-        typeTextOnTextField(R.id.mobileField,"")
+        LoginScenario.supposeUserWithMobileExists("09120000000")
 
-        clickOnView(R.id.askForVerificationCodeButton)
+        LoginScenario.userEntersMobileAndClicksLogin("09120000000")
 
-        ensureThatViewWithTextIsOnScreenNow(getString(R.string.warning_mobile_should_not_be_empty))
+        LoginScenario.userWillBeProceededToCodeVerificationPage()
     }
 
+    @Test
+    fun userEntersValidMobileAndVerifiesTheWrongCodeScenario()
+    {
+        LoginScenario.supposeUserWithMobileExists("09120000000")
+        LoginScenario.supposeVerificationCodeIs("code")
+
+        LoginScenario.userEntersMobileAndClicksLogin("09120000000")
+
+        LoginScenario.userWillBeProceededToCodeVerificationPage()
+
+        LoginScenario.userEntersVerificationCodeAndAsksToConfirmIt("wrong code")
+
+        LoginScenario.userIsPromptedWithInvalidCode()
+    }
 
 }

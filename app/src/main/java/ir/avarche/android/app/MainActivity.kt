@@ -1,12 +1,11 @@
-package ir.avarche.android.test
+package ir.avarche.android.app
 
-import android.app.Activity
 import android.os.Bundle
-import androidx.core.view.isVisible
-import kotlinx.android.synthetic.main.main_activity.*
+import androidx.appcompat.app.AppCompatActivity
+import ir.avarche.android.test.R
 
 
-class MainActivity : Activity()
+class MainActivity : AppCompatActivity()
 {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
