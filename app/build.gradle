@@ -9,6 +9,8 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
 
+    dataBinding { enabled = true }
+
     defaultConfig {
         multiDexEnabled = true
         applicationId "ir.avarche.android.login"

@@ -4,18 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
-import ir.avarche.android.app.util.alert
 import ir.avarche.android.app.di.DaggerRepos
 import ir.avarche.android.app.di.ViewModelFactory
+import ir.avarche.android.app.util.alert
+import ir.avarche.android.app.util.tellNavControllerToNavigate
 import ir.avarche.android.test.R
+import ir.avarche.android.test.databinding.LoginMobilePageBinding
 import javax.inject.Inject
 
 class LoginMobilePage : Fragment() {
@@ -31,34 +28,20 @@ class LoginMobilePage : Fragment() {
 
         DaggerRepos.create().inject(this)
         val viewModel = ViewModelProvider(activity as AppCompatActivity,viewModelFactory).get(LoginViewModel::class.java)
-        val view = inflater.inflate(R.layout.login_mobile_page,container,false)
-        val mobileField = view.findViewById<EditText>(R.id.mobileField)
-        val askForVerificationCodeButton = view.findViewById<Button>(R.id.askForVerificationCodeButton)
 
-        mobileField.doOnTextChanged { text, _, _, _ ->
-            viewModel.mobile  = text?.toString() ?: ""
-        }
+        val binding = LoginMobilePageBinding.inflate(inflater, container, false)
+        val view = binding.root
+        binding.viewmodel = viewModel
+
 
         viewModel.invalidMobileWarns.handleIfHasNotBeenHandled(viewLifecycleOwner) {
-                alert(
-                    context!!,
-                    "",
-                    getString(R.string.warning_mobile_should_be_correct)
-                )
-
+                alert(getString(R.string.warning_mobile_should_be_correct))
         }
 
 
-        viewModel.verificationCodeSent.handleIfHasNotBeenHandled(viewLifecycleOwner) {
-
-            if(it)
-                view.findNavController().navigate(R.id.action_loginMobilePage2_to_loginVerificationPage)
+        viewModel.verificationCodeSent.handleIfHasNotBeenHandledAndContentMatch(true,viewLifecycleOwner) {
+                view.tellNavControllerToNavigate(R.id.action_loginMobilePage2_to_loginVerificationPage)
         }
-
-        askForVerificationCodeButton.setOnClickListener {
-            viewModel.login()
-        }
-
 
         return view
     }

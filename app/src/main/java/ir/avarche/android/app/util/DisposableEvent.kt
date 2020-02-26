@@ -35,6 +35,15 @@ class EventStream<T>(initialEvent:T? = null)
         })
     }
 
+    fun handleIfHasNotBeenHandledAndContentMatch(expectedContent:T,lifecycleOwner: LifecycleOwner,handler: (T) -> Unit)
+    {
+        liveData.observe(lifecycleOwner, Observer<DisposableEvent<T>>{event->
+            if( event.hasBeenHandled.compareAndSet(false,true))
+                if(expectedContent == event.content)
+                    handler(event.content)
+        })
+    }
+
     fun publish(content:T)
     {
         lastPublishedEvent = content

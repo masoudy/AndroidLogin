@@ -95,4 +95,19 @@ object LoginScenario {
             }
         })
     }
+
+
+    fun performLoginHappyScenario(mobile: String,verificationCode:String)
+    {
+        supposeUserWithMobileExists(mobile)
+        supposeVerificationCodeIs(verificationCode)
+
+        userEntersMobileAndClicksLogin(mobile)
+
+        userWillBeProceededToCodeVerificationPage()
+
+        userEntersVerificationCodeAndAsksToConfirmIt(verificationCode)
+
+        userIsPromptedWithCongratulationDialog()
+    }
 }

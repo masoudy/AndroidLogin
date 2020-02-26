@@ -4,10 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -15,6 +12,7 @@ import ir.avarche.android.app.di.DaggerRepos
 import ir.avarche.android.app.di.ViewModelFactory
 import ir.avarche.android.app.util.alert
 import ir.avarche.android.test.R
+import ir.avarche.android.test.databinding.LoginVerificationPageBinding
 import javax.inject.Inject
 
 class LoginVerificationPage : Fragment() {
@@ -30,35 +28,22 @@ class LoginVerificationPage : Fragment() {
 
         DaggerRepos.create().inject(this)
         val viewModel = ViewModelProvider(activity as AppCompatActivity,viewModelFactory).get(LoginViewModel::class.java)
-        val view = inflater.inflate(R.layout.login_verification_page,container,false)
-        val verificationField = view.findViewById<EditText>(R.id.verificationField)
-        val confirmVerificationButton = view.findViewById<Button>(R.id.confirmVerificationCodeButton)
 
-        verificationField.doOnTextChanged { text, _, _, _ ->
-            viewModel.verificationCode  = text?.toString() ?: ""
-        }
+        val binding = LoginVerificationPageBinding.inflate(inflater,container,false)
+        val view = binding.root
+        binding.viewmodel = viewModel
+
 
         viewModel.wrongCodeWarns.handleIfHasNotBeenHandled(viewLifecycleOwner){
-                alert(
-                    context!!,
-                    "",
-                    getString(R.string.warning_verification_code_should_be_correct)
-                )
+                alert(getString(R.string.warning_verification_code_should_be_correct))
         }
 
 
         viewModel.isLoggedIn.observe(viewLifecycleOwner, Observer{
             if(it)
-                alert(
-                    context!!,
-                    "",
-                    getString(R.string.congratulation_your_inside)
-                )
+                alert(getString(R.string.congratulation_your_inside))
         })
 
-        confirmVerificationButton.setOnClickListener {
-            viewModel.verifyCode()
-        }
 
         return view
     }
