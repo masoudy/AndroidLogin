@@ -9,7 +9,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class UserSendsMobileSuccessfullyAndProceedsToVerificationCodePage {
+class LoginAcceptanceTests {
 
     @get:Rule
     val mainActivityRule = ActivityScenarioRule(MainActivity::class.java)
@@ -26,7 +26,7 @@ class UserSendsMobileSuccessfullyAndProceedsToVerificationCodePage {
     @Test
     fun uponEnteringValidMobileUserWillProceedToVerificationPageScenario()
     {
-        LoginScenario.supposeUserWithMobileExists("09120000000")
+        LoginScenario.supposeUserWithMobileExistsOnServer("09120000000")
 
         LoginScenario.userEntersMobileAndClicksLogin("09120000000")
 
@@ -36,7 +36,7 @@ class UserSendsMobileSuccessfullyAndProceedsToVerificationCodePage {
     @Test
     fun userEntersValidMobileAndVerifiesTheWrongCodeScenario()
     {
-        LoginScenario.supposeUserWithMobileExists("09120000000")
+        LoginScenario.supposeUserWithMobileExistsOnServer("09120000000")
         LoginScenario.supposeVerificationCodeIs("code")
 
         LoginScenario.userEntersMobileAndClicksLogin("09120000000")
@@ -52,7 +52,7 @@ class UserSendsMobileSuccessfullyAndProceedsToVerificationCodePage {
     @Test
     fun userEntersValidMobileAndVerifiesTheCorrectCodeScenario()
     {
-        LoginScenario.supposeUserWithMobileExists("09120000000")
+        LoginScenario.supposeUserWithMobileExistsOnServer("09120000000")
         LoginScenario.supposeVerificationCodeIs("code")
 
         LoginScenario.userEntersMobileAndClicksLogin("09120000000")

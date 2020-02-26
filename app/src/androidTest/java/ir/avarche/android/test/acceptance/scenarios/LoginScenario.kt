@@ -27,7 +27,7 @@ object LoginScenario {
         ensureThatViewIsOnScreenNow(R.id.confirmVerificationCodeButton)
     }
 
-    fun supposeUserWithMobileExists(mobile: String) {
+    fun supposeUserWithMobileExistsOnServer(mobile: String) {
 
         ServerGateway.addInterceptor(object : ServerInterceptor {
             override fun intercept(request: Request) {
@@ -99,7 +99,7 @@ object LoginScenario {
 
     fun performLoginHappyScenario(mobile: String,verificationCode:String)
     {
-        supposeUserWithMobileExists(mobile)
+        supposeUserWithMobileExistsOnServer(mobile)
         supposeVerificationCodeIs(verificationCode)
 
         userEntersMobileAndClicksLogin(mobile)

@@ -1,9 +1,12 @@
 package ir.avarche.android.app.loginPage
 
+import androidx.lifecycle.LiveData
 import retrofit2.Call
 import javax.inject.Inject
 
 interface LoginRepository {
+
+    val loggedInUser: LiveData<User?>
 
     fun login(mobile:String):Call<User?>
     fun verifyCode(mobile: String,verificationCode: String): Call<Boolean>

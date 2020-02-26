@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
-    app:startDestination="@id/loginMobilePage2">
+    app:startDestination="@id/splashPage">
     <fragment
         android:id="@+id/loginMobilePage2"
         android:name="ir.avarche.android.app.loginPage.LoginMobilePage"
@@ -14,4 +14,19 @@
         android:id="@+id/loginVerificationPage"
         android:name="ir.avarche.android.app.loginPage.LoginVerificationPage"
         android:label="LoginVerificationPage" />
+    <fragment
+        android:id="@+id/splashPage"
+        android:name="ir.avarche.android.app.splashPage.SplashPage"
+        android:label="SplashPage" >
+        <action
+            android:id="@+id/action_splashPage_to_loginMobilePage2"
+            app:destination="@id/loginMobilePage2" />
+        <action
+            android:id="@+id/action_splashPage_to_mainMenuPage"
+            app:destination="@id/mainMenuPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainMenuPage"
+        android:name="ir.avarche.android.app.mainMenu.MainMenuPage"
+        android:label="MainMenuPage" />
 </navigation>

@@ -7,6 +7,7 @@ import dagger.multibindings.IntoMap
 import dagger.multibindings.StringKey
 import ir.avarche.android.app.ServerGateway
 import ir.avarche.android.app.loginPage.*
+import ir.avarche.android.app.splashPage.SplashPage
 import okhttp3.Interceptor
 import retrofit2.Retrofit
 import javax.inject.Provider
@@ -17,6 +18,7 @@ interface Repos
 {
     fun loginRepository():LoginRepository
     fun inject(page:LoginMobilePage)
+    fun inject(page:SplashPage)
     fun inject(page:LoginVerificationPage)
 }
 

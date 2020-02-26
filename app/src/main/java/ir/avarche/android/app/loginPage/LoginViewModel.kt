@@ -21,6 +21,8 @@ class LoginViewModel @Inject constructor(private val repository:LoginRepository)
     var invalidMobileWarns: EventStream<Unit> = EventStream()
     var verificationCodeSent: EventStream<Boolean> = EventStream(false)
 
+    val isLoginButtonEnabled:Boolean
+        get() = mobile.length > 11
 
     fun login(){
 
