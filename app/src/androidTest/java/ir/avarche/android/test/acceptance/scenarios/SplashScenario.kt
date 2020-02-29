@@ -1,7 +1,7 @@
 package ir.avarche.android.test.acceptance.scenarios
 
-import ir.avarche.android.app.database.DatabaseGateway
-import ir.avarche.android.app.database.User
+import ir.avarche.android.app.infrastructure.database.DatabaseGateway
+import ir.avarche.android.app.infrastructure.database.User
 import ir.avarche.android.test.*
 import kotlinx.coroutines.runBlocking
 

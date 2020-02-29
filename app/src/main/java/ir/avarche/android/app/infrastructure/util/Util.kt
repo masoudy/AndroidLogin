@@ -1,4 +1,4 @@
-package ir.avarche.android.app.util
+package ir.avarche.android.app.infrastructure.util
 
 import android.view.View
 import androidx.appcompat.app.AlertDialog

@@ -1,7 +1,6 @@
-package ir.avarche.android.app.loginPage
+package ir.avarche.android.app.infrastructure.httpGateways
 
-import ir.avarche.android.app.database.User
-import retrofit2.Call
+import ir.avarche.android.app.infrastructure.database.User
 import retrofit2.http.GET
 import retrofit2.http.Header
 

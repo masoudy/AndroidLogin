@@ -1,4 +1,4 @@
-package ir.avarche.android.app.di
+package ir.avarche.android.app.infrastructure.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

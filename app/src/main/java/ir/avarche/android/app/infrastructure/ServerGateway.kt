@@ -1,4 +1,4 @@
-package ir.avarche.android.app
+package ir.avarche.android.app.infrastructure
 
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
@@ -12,7 +12,8 @@ object ServerGateway:Interceptor
     private var interceptors = mutableListOf<ServerInterceptor>()
 
 
-    private var retrofit = builder()
+    private var retrofit =
+        builder()
 
     private fun builder(): Retrofit
     {
@@ -52,7 +53,7 @@ object ServerGateway:Interceptor
         interceptors.forEach {
             try{
                 it.intercept(chain.request())
-            }catch (e:CallWasIntercepted)
+            }catch (e: CallWasIntercepted)
             {
                 return e.response
             }

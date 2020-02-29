@@ -4,13 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import ir.avarche.android.app.database.User
-import ir.avarche.android.app.util.EventStream
-import kotlinx.coroutines.Dispatchers
+import ir.avarche.android.app.infrastructure.repos.LoginRepository
+import ir.avarche.android.app.infrastructure.util.EventStream
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(private val repository: LoginRepository) : ViewModel() {

@@ -2,9 +2,8 @@ package ir.avarche.android.test.loginPage
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import io.kotlintest.shouldBe
-import ir.avarche.android.app.database.DatabaseGateway
 import ir.avarche.android.app.loginPage.LoginViewModel
-import ir.avarche.android.app.database.User
+import ir.avarche.android.app.infrastructure.database.User
 import ir.avarche.android.test.doubles.LoginRepositoryMock
 import ir.avarche.android.test.doubles.mockLifecycleOwner
 import kotlinx.coroutines.Dispatchers

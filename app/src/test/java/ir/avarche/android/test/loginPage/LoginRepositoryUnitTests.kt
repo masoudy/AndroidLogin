@@ -2,7 +2,7 @@ package ir.avarche.android.test.loginPage
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import io.kotlintest.shouldBe
-import ir.avarche.android.app.loginPage.LoginRepo
+import ir.avarche.android.app.infrastructure.repos.LoginRepo
 import ir.avarche.android.test.doubles.LoginHttpGatewayMock
 import ir.avarche.android.test.doubles.UserDaoMock
 import kotlinx.coroutines.runBlocking
@@ -17,7 +17,10 @@ class LoginRepositoryUnitTests {
     val userDao = UserDaoMock()
     val loginHttpGateway = LoginHttpGatewayMock()
     private val repo =
-        LoginRepo(loginHttpGateway, userDao)
+        LoginRepo(
+            loginHttpGateway,
+            userDao
+        )
 
 
     @Test

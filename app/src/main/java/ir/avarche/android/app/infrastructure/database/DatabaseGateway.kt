@@ -1,10 +1,9 @@
-package ir.avarche.android.app.database
+package ir.avarche.android.app.infrastructure.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import java.util.concurrent.atomic.AtomicReference
 
 @Database(entities = [User::class],version = 1)
 abstract class DatabaseGateway  : RoomDatabase()

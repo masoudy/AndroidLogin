@@ -1,4 +1,4 @@
-package ir.avarche.android.app.util
+package ir.avarche.android.app.infrastructure.util
 
 
 import androidx.lifecycle.LifecycleOwner

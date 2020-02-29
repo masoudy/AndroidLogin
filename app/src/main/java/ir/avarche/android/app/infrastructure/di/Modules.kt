@@ -1,4 +1,4 @@
-package ir.avarche.android.app.di
+package ir.avarche.android.app.infrastructure.di
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
@@ -9,12 +9,14 @@ import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap
 import dagger.multibindings.StringKey
-import ir.avarche.android.app.ServerGateway
-import ir.avarche.android.app.database.DatabaseGateway
+import ir.avarche.android.app.infrastructure.ServerGateway
+import ir.avarche.android.app.infrastructure.database.DatabaseGateway
+import ir.avarche.android.app.infrastructure.httpGateways.LoginHttpGateway
+import ir.avarche.android.app.infrastructure.repos.LoginRepo
+import ir.avarche.android.app.infrastructure.repos.LoginRepository
 import ir.avarche.android.app.loginPage.*
 import ir.avarche.android.app.splashPage.SplashPage
 import javax.inject.Provider
-import javax.inject.Singleton
 
 
 @Component(modules = [VMs::class])
@@ -45,10 +47,11 @@ object VMs
 
     @Provides
     @JvmStatic
-    fun provideLoginRepository(databaseGateway: DatabaseGateway) = LoginRepo(
-        ServerGateway.getGatewayImplementation(LoginHttpGateway::class.java),
-        databaseGateway.userDao()
-    )
+    fun provideLoginRepository(databaseGateway: DatabaseGateway) =
+        LoginRepo(
+            ServerGateway.getGatewayImplementation(LoginHttpGateway::class.java),
+            databaseGateway.userDao()
+        )
 
     @Provides
     @JvmStatic

@@ -1,4 +1,4 @@
-package ir.avarche.android.app.database
+package ir.avarche.android.app.infrastructure.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

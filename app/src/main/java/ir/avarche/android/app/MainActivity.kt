@@ -2,9 +2,9 @@ package ir.avarche.android.app
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import ir.avarche.android.app.di.AppModule
-import ir.avarche.android.app.di.DaggerRepos
-import ir.avarche.android.app.di.Repos
+import ir.avarche.android.app.infrastructure.di.AppModule
+import ir.avarche.android.app.infrastructure.di.DaggerRepos
+import ir.avarche.android.app.infrastructure.di.Repos
 import ir.avarche.android.test.R
 
 

@@ -10,9 +10,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import ir.avarche.android.app.MainActivity
-import ir.avarche.android.app.di.DaggerRepos
-import ir.avarche.android.app.loginPage.LoginRepo
-import ir.avarche.android.app.util.tellNavControllerToNavigate
+import ir.avarche.android.app.infrastructure.repos.LoginRepo
+import ir.avarche.android.app.infrastructure.util.tellNavControllerToNavigate
 import ir.avarche.android.test.R
 import ir.avarche.android.test.databinding.SplashBinding
 import javax.inject.Inject

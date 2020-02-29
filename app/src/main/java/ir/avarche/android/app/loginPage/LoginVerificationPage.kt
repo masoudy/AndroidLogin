@@ -9,9 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import ir.avarche.android.app.MainActivity
-import ir.avarche.android.app.di.ViewModelFactory
-import ir.avarche.android.app.util.alert
-import ir.avarche.android.app.util.tellNavControllerToNavigate
+import ir.avarche.android.app.infrastructure.di.ViewModelFactory
+import ir.avarche.android.app.infrastructure.util.alert
+import ir.avarche.android.app.infrastructure.util.tellNavControllerToNavigate
 import ir.avarche.android.test.R
 import ir.avarche.android.test.databinding.LoginVerificationPageBinding
 import javax.inject.Inject

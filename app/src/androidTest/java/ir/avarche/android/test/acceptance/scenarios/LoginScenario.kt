@@ -1,11 +1,10 @@
 package ir.avarche.android.test.acceptance.scenarios
 
 import io.kotlintest.shouldBe
-import ir.avarche.android.app.CallWasIntercepted
-import ir.avarche.android.app.ServerGateway
-import ir.avarche.android.app.ServerInterceptor
-import ir.avarche.android.app.database.DatabaseGateway
-import ir.avarche.android.app.database.User
+import ir.avarche.android.app.infrastructure.CallWasIntercepted
+import ir.avarche.android.app.infrastructure.ServerGateway
+import ir.avarche.android.app.infrastructure.ServerInterceptor
+import ir.avarche.android.app.infrastructure.database.DatabaseGateway
 import ir.avarche.android.test.*
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
@@ -32,7 +31,8 @@ object LoginScenario {
 
     fun supposeUserWithMobileExistsOnServer(mobile: String) {
 
-        ServerGateway.addInterceptor(object : ServerInterceptor {
+        ServerGateway.addInterceptor(object :
+            ServerInterceptor {
             override fun intercept(request: Request) {
                 if (request.url.encodedPathSegments == listOf("login")
                     &&
@@ -52,7 +52,9 @@ object LoginScenario {
                         )
                         .build()
 
-                    throw CallWasIntercepted(response)
+                    throw CallWasIntercepted(
+                        response
+                    )
                 }
             }
         })
@@ -73,7 +75,8 @@ object LoginScenario {
     }
 
     fun supposeVerificationCodeIs(code: String) {
-        ServerGateway.addInterceptor(object : ServerInterceptor {
+        ServerGateway.addInterceptor(object :
+            ServerInterceptor {
             override fun intercept(request: Request) {
                 println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+request.header("code"))
 
@@ -93,7 +96,9 @@ object LoginScenario {
                         )
                         .build()
 
-                    throw CallWasIntercepted(response)
+                    throw CallWasIntercepted(
+                        response
+                    )
                 }
             }
         })
@@ -115,7 +120,7 @@ object LoginScenario {
     }
 
     fun userIsSavedAsLoggedIn(mobile: String) {
-        
+
         DatabaseGateway.instance.userDao().count() shouldBe 1
     }
 }

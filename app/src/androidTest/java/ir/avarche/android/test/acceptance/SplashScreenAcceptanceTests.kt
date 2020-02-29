@@ -2,7 +2,7 @@ package ir.avarche.android.test.acceptance
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import ir.avarche.android.app.MainActivity
-import ir.avarche.android.app.database.DatabaseGateway
+import ir.avarche.android.app.infrastructure.database.DatabaseGateway
 import ir.avarche.android.test.acceptance.scenarios.SplashScenario
 import ir.avarche.android.test.applicationContext
 import org.junit.Rule

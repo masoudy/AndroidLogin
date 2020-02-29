@@ -31,6 +31,6 @@
     </fragment>
     <fragment
         android:id="@+id/mainMenuPage"
-        android:name="ir.avarche.android.app.mainMenu.MainMenuPage"
+        android:name="ir.avarche.android.app.mainMenuPage.MainMenuPage"
         android:label="MainMenuPage" />
 </navigation>

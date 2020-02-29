@@ -1,9 +1,10 @@
 package ir.avarche.android.test.doubles
 
-import ir.avarche.android.app.loginPage.LoginHttpGateway
-import ir.avarche.android.app.database.User
+import ir.avarche.android.app.infrastructure.httpGateways.LoginHttpGateway
+import ir.avarche.android.app.infrastructure.database.User
 
-class LoginHttpGatewayMock:LoginHttpGateway {
+class LoginHttpGatewayMock:
+    LoginHttpGateway {
 
     var nextCallToVerifyLogin = false
 

@@ -2,8 +2,8 @@ package ir.avarche.android.test.doubles
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import ir.avarche.android.app.database.User
-import ir.avarche.android.app.database.UserDao
+import ir.avarche.android.app.infrastructure.database.User
+import ir.avarche.android.app.infrastructure.database.UserDao
 
 class UserDaoMock:UserDao {
 

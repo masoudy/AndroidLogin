@@ -1,8 +1,9 @@
-package ir.avarche.android.app.loginPage
+package ir.avarche.android.app.infrastructure.repos
 
 import androidx.lifecycle.LiveData
-import ir.avarche.android.app.database.User
-import ir.avarche.android.app.database.UserDao
+import ir.avarche.android.app.infrastructure.database.User
+import ir.avarche.android.app.infrastructure.database.UserDao
+import ir.avarche.android.app.infrastructure.httpGateways.LoginHttpGateway
 import javax.inject.Inject
 
 interface LoginRepository {
@@ -14,7 +15,7 @@ interface LoginRepository {
 
 }
 
-class LoginRepo @Inject constructor(private val loginHttpGateway: LoginHttpGateway,private val userDao: UserDao):
+class LoginRepo @Inject constructor(private val loginHttpGateway: LoginHttpGateway, private val userDao: UserDao):
     LoginRepository
 {
     override suspend fun login(mobile: String) = loginHttpGateway.login(mobile)

@@ -2,14 +2,15 @@ package ir.avarche.android.test.doubles
 
 import androidx.lifecycle.LiveData
 import io.kotlintest.shouldBe
-import ir.avarche.android.app.loginPage.LoginRepository
-import ir.avarche.android.app.database.User
+import ir.avarche.android.app.infrastructure.repos.LoginRepository
+import ir.avarche.android.app.infrastructure.database.User
 import okhttp3.Request
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class LoginRepositoryMock() : LoginRepository {
+class LoginRepositoryMock() :
+    LoginRepository {
 
     private var wasCalledWithMobile = ""
     private var wasCalledWithCode = ""
