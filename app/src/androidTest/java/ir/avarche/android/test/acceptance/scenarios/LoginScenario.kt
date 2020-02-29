@@ -1,8 +1,11 @@
 package ir.avarche.android.test.acceptance.scenarios
 
+import io.kotlintest.shouldBe
 import ir.avarche.android.app.CallWasIntercepted
 import ir.avarche.android.app.ServerGateway
 import ir.avarche.android.app.ServerInterceptor
+import ir.avarche.android.app.database.DatabaseGateway
+import ir.avarche.android.app.database.User
 import ir.avarche.android.test.*
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
@@ -65,8 +68,8 @@ object LoginScenario {
         ensureThatViewWithTextIsOnScreenNow(getString(R.string.warning_verification_code_should_be_correct))
     }
 
-    fun userIsPromptedWithCongratulationDialog() {
-        ensureThatViewWithTextIsOnScreenNow(getString(R.string.congratulation_your_inside))
+    fun userIsMovedToWelcomePage() {
+        ensureThatViewIsOnScreenNow(R.id.welcomeText)
     }
 
     fun supposeVerificationCodeIs(code: String) {
@@ -108,6 +111,11 @@ object LoginScenario {
 
         userEntersVerificationCodeAndAsksToConfirmIt(verificationCode)
 
-        userIsPromptedWithCongratulationDialog()
+        userIsMovedToWelcomePage()
+    }
+
+    fun userIsSavedAsLoggedIn(mobile: String) {
+        
+        DatabaseGateway.instance.userDao().count() shouldBe 1
     }
 }

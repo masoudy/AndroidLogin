@@ -3,13 +3,17 @@ package ir.avarche.android.app.loginPage
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import ir.avarche.android.app.database.User
 import ir.avarche.android.app.util.EventStream
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
 
-class LoginViewModel @Inject constructor(private val repository:LoginRepository) : ViewModel() {
+class LoginViewModel @Inject constructor(private val repository: LoginRepository) : ViewModel() {
 
     var mobile:String = ""
     var verificationCode:String = ""
@@ -35,20 +39,23 @@ class LoginViewModel @Inject constructor(private val repository:LoginRepository)
         if(isInProgress.value!!)
             return
 
+        viewModelScope.launch{
+            loginProcess()
+        }
+    }
+
+    private suspend fun loginProcess() {
         (isInProgress as MutableLiveData).value = true
 
-        repository.login(mobile).enqueue(object:Callback<User?>{
-            override fun onFailure(call: Call<User?>, t: Throwable) {
-                t.printStackTrace()
-                isInProgress.postValue(false)
-                verificationCodeSent.publish(false)
-            }
+        val user = try {
+            repository.login(mobile)
+        } catch (e: Throwable) {
+            null
+        }
 
-            override fun onResponse(call: Call<User?>, response: Response<User?>) {
-                isInProgress.postValue(false)
-                verificationCodeSent.publish(response.body() != null)
-            }
-        })
+
+        isInProgress.postValue(false)
+        verificationCodeSent.publish(user != null)
     }
 
     private fun isMobileValid() =
@@ -60,23 +67,25 @@ class LoginViewModel @Inject constructor(private val repository:LoginRepository)
         if(isInProgress.value!!)
             return
 
+        viewModelScope.launch {
+            verifyProcess()
+        }
+    }
+
+    private suspend fun verifyProcess() {
         (isInProgress as MutableLiveData).value = true
 
-        repository.verifyCode(mobile,verificationCode).enqueue(object:Callback<Boolean>{
-            override fun onFailure(call: Call<Boolean>, t: Throwable) {
-                t.printStackTrace()
-                isInProgress.postValue(false)
-                (isLoggedIn as MutableLiveData).value = false
-            }
+        (isLoggedIn as MutableLiveData).value = try {
+            val result = repository.verifyCode(mobile, verificationCode)
 
-            override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
-                isInProgress.postValue(false)
+            if (!result)
+                wrongCodeWarns.publish(Unit)
 
-                if(response.body() == false)
-                    wrongCodeWarns.publish(Unit)
-                else
-                    (isLoggedIn as MutableLiveData).value = true
-            }
-        })
+            result
+        } catch (e: Throwable) {
+            false
+        }
+
+        isInProgress.postValue(false)
     }
 }

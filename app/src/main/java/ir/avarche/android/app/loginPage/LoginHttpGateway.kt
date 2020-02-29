@@ -1,5 +1,6 @@
 package ir.avarche.android.app.loginPage
 
+import ir.avarche.android.app.database.User
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -7,8 +8,8 @@ import retrofit2.http.Header
 interface LoginHttpGateway
 {
     @GET("/login")
-    fun login(@Header("mobile") mobile:String):Call<User?>
+    suspend fun login(@Header("mobile") mobile:String):User?
 
     @GET("/verify")
-    fun verifyCode(@Header("mobile") mobile: String,@Header("code") verificationCode: String): Call<Boolean>
+    suspend fun verifyCode(@Header("mobile") mobile: String,@Header("code") verificationCode: String): Boolean
 }

@@ -1,22 +1,26 @@
 package ir.avarche.android.app.di
 
+import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import dagger.*
+import dagger.Binds
+import dagger.Component
+import dagger.Module
+import dagger.Provides
 import dagger.multibindings.IntoMap
 import dagger.multibindings.StringKey
 import ir.avarche.android.app.ServerGateway
+import ir.avarche.android.app.database.DatabaseGateway
 import ir.avarche.android.app.loginPage.*
 import ir.avarche.android.app.splashPage.SplashPage
-import okhttp3.Interceptor
-import retrofit2.Retrofit
 import javax.inject.Provider
+import javax.inject.Singleton
 
 
 @Component(modules = [VMs::class])
 interface Repos
 {
-    fun loginRepository():LoginRepository
+    fun loginRepository(): LoginRepository
     fun inject(page:LoginMobilePage)
     fun inject(page:SplashPage)
     fun inject(page:LoginVerificationPage)
@@ -25,21 +29,26 @@ interface Repos
 
 
 
-@Module(includes = [Bindings::class])
+@Module(includes = [Bindings::class,AppModule::class])
 object VMs
 {
-
     @IntoMap
     @Provides
     @JvmStatic
     @StringKey("LoginViewModel")
-    fun provideLoginViewModel(repo:LoginRepository) = LoginViewModel(repo)
-
+    fun provideLoginViewModel(repo: LoginRepository) = LoginViewModel(repo)
 
 
     @Provides
     @JvmStatic
-    fun provideLoginRepository() = LoginRepo( ServerGateway.getGatewayImplementation(LoginHttpGateway::class.java))
+    fun provideDatabaseGateway(application: Application) = DatabaseGateway.initialize(application)
+
+    @Provides
+    @JvmStatic
+    fun provideLoginRepository(databaseGateway: DatabaseGateway) = LoginRepo(
+        ServerGateway.getGatewayImplementation(LoginHttpGateway::class.java),
+        databaseGateway.userDao()
+    )
 
     @Provides
     @JvmStatic
@@ -54,11 +63,22 @@ object VMs
 
 }
 
+
+@Module
+class AppModule(var mApplication: Application) {
+    @Provides
+    fun providesApplication(): Application {
+        return mApplication
+    }
+
+}
+
+
 @Module
 interface Bindings
 {
     @Binds
-    fun bind1(repo:LoginRepo):LoginRepository
+    fun bind1(repo: LoginRepo): LoginRepository
 
     @Binds
     fun bind2(f:ViewModelFactory):ViewModelProvider.Factory

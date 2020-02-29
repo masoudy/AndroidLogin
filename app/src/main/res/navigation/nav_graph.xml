@@ -13,7 +13,11 @@
     <fragment
         android:id="@+id/loginVerificationPage"
         android:name="ir.avarche.android.app.loginPage.LoginVerificationPage"
-        android:label="LoginVerificationPage" />
+        android:label="LoginVerificationPage" >
+        <action
+            android:id="@+id/action_loginVerificationPage_to_mainMenuPage"
+            app:destination="@id/mainMenuPage" />
+    </fragment>
     <fragment
         android:id="@+id/splashPage"
         android:name="ir.avarche.android.app.splashPage.SplashPage"

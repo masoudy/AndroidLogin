@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import ir.avarche.android.app.MainActivity
 import ir.avarche.android.app.di.DaggerRepos
 import ir.avarche.android.app.di.ViewModelFactory
 import ir.avarche.android.app.util.alert
@@ -26,7 +27,7 @@ class LoginMobilePage : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        DaggerRepos.create().inject(this)
+        MainActivity.injector.inject(this)
         val viewModel = ViewModelProvider(activity as AppCompatActivity,viewModelFactory).get(LoginViewModel::class.java)
 
         val binding = LoginMobilePageBinding.inflate(inflater, container, false)
