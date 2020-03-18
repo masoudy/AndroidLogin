@@ -2,6 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
     app:startDestination="@id/splashPage">
+
     <fragment
         android:id="@+id/loginMobilePage2"
         android:name="ir.avarche.android.app.loginPage.LoginMobilePage"
@@ -10,6 +11,7 @@
             android:id="@+id/action_loginMobilePage2_to_loginVerificationPage"
             app:destination="@id/loginVerificationPage" />
     </fragment>
+
     <fragment
         android:id="@+id/loginVerificationPage"
         android:name="ir.avarche.android.app.loginPage.LoginVerificationPage"
@@ -18,19 +20,27 @@
             android:id="@+id/action_loginVerificationPage_to_mainMenuPage"
             app:destination="@id/mainMenuPage" />
     </fragment>
+
     <fragment
         android:id="@+id/splashPage"
         android:name="ir.avarche.android.app.splashPage.SplashPage"
         android:label="SplashPage" >
         <action
             android:id="@+id/action_splashPage_to_loginMobilePage2"
-            app:destination="@id/loginMobilePage2" />
+            app:destination="@id/loginMobilePage2"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/splashPage"
+            />
         <action
             android:id="@+id/action_splashPage_to_mainMenuPage"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/splashPage"
             app:destination="@id/mainMenuPage" />
     </fragment>
+
     <fragment
         android:id="@+id/mainMenuPage"
         android:name="ir.avarche.android.app.mainMenuPage.MainMenuPage"
         android:label="MainMenuPage" />
+
 </navigation>

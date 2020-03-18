@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
 
-        injector = DaggerRepos.builder().appModule(AppModule( application))
-            .build()
+        injector = DaggerRepos.builder().appModule(AppModule( application)).build()
     }
 }

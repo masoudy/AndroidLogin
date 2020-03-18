@@ -123,4 +123,12 @@ object LoginScenario {
 
         DatabaseGateway.instance.userDao().count() shouldBe 1
     }
+
+    fun userOpensSideDrawerAndPressesLogout() {
+        openDrawerAndNavigateToMenuItemAndClickIt(R.id.drawerLayout,R.id.navigation,R.id.loginMobilePage2)
+    }
+
+    fun userWillBeProceededToEnteringMobilePage() {
+        ensureThatViewIsOnScreenNow(R.id.mobileField)
+    }
 }

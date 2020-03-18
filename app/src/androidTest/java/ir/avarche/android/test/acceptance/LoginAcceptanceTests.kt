@@ -82,4 +82,14 @@ class LoginAcceptanceTests {
 
         LoginScenario.userIsSavedAsLoggedIn(validMobile)
     }
+
+    @Test
+    fun userLoginSuccessfullyAndThenLogsOutScenario()
+    {
+        LoginScenario.performLoginHappyScenario(validMobile,correctCode)
+
+        LoginScenario.userOpensSideDrawerAndPressesLogout()
+
+        LoginScenario.userWillBeProceededToEnteringMobilePage()
+    }
 }

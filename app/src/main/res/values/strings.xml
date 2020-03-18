@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Material Test</string>
     <string name="warning_mobile_should_be_correct">لطفا شماره موبایل را درست وارد کنید!</string>
     <string name="warning_verification_code_should_be_correct">لطفا کد پیامک شده را درست وارد کنید!</string>
     <string name="congratulation_your_inside">خوش آمدید</string>
